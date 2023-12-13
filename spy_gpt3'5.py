@@ -20,7 +20,7 @@ op.add_experimental_option("excludeSwitches", ["enable-logging"])
 driver = uc.Chrome(chrome_options=op)
 
 #Necessario preencher com suas credencias a baixo (essa parte é extremamente sigilosa, tome cuidado ao compartilhar o codigo ou deixar em locais não seguros.)
-MAIL = "SEU_EMAIL
+MAIL = "SEU_EMAIL"
 PASSWORD = "SUA_SENHA"
 
 #Abrindo o GPT...
