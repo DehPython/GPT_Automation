@@ -55,7 +55,7 @@ input_box = driver.find_element(by=By.XPATH, value='//textarea[contains(@placeho
 driver.execute_script(f"arguments[0].value = '{prompt}';", input_box)
 input_box.send_keys(Keys.RETURN)
 input_box.submit()
-sleep(15)
+sleep(15) #Tempo de espera da resposta, mofique esse parametro de acordo com a velocidade que seu gpt responde.
 
 # Obter a conversa do ChatGPT
 response_elements = driver.find_elements(by=By.CSS_SELECTOR, value='div.text-base')
