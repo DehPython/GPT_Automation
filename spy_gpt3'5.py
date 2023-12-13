@@ -7,8 +7,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from fake_useragent import UserAgent
 from selenium.webdriver.support import expected_conditions as EC
 
+#prompt que você deseja passar para o GPT, caso queira passar de outra forma modifique a linha a baixo.
 prompt = str(input("Digite o prompt: "))
 
+#Inicialização do WebDrive no modo Indetectavel
 op = webdriver.ChromeOptions()
 op.add_argument(f"user-agent={UserAgent.random}")
 op.add_argument("user-data-dir=./")
@@ -16,10 +18,11 @@ op.add_experimental_option("detach", True)
 op.add_experimental_option("excludeSwitches", ["enable-logging"])
 
 driver = uc.Chrome(chrome_options=op)
-
+#Necessario preencher com suas credencias a baixo (essa parte é extremamente sigilosa, tome cuidado ao compartilhar o codigo ou deixar em locais não seguros.)
 MAIL = "SEU_EMAIL
 PASSWORD = "SUA_SENHA"
 
+#Abrindo o GPT...
 driver.get('https://chat.openai.com/auth/login')
 
 sleep(3)
@@ -46,8 +49,8 @@ btn.click()
 
 sleep(6)
 
-# Envia o prompt para o ChatGPT
-input_box = driver.find_element(by=By.XPATH, value='//textarea[contains(@placeholder, "Message ChatGPT…")]')
+# Enviar o prompt para o ChatGPT
+input_box = driver.find_element(by=By.XPATH, value='//textarea[contains(@placeholder, "Message ChatGPT…")]') # Obs: Pode ser que o site atualize e seja necessario modificar esse paramentro, mas geralmente o que altera é a mensagem do Placeholder no caso "Message ChatGPT…"
 driver.execute_script(f"arguments[0].value = '{prompt}';", input_box)
 input_box.send_keys(Keys.RETURN)
 input_box.submit()
@@ -57,5 +60,5 @@ sleep(15)
 response_elements = driver.find_elements(by=By.CSS_SELECTOR, value='div.text-base')
 last_response = response_elements[-1].text
 
-# Opcional: Exibir a última resposta
+#Exibir a última resposta ( caso queira, utilize a variavel "last_response" para armazenar de outra forma, aqui ela será apenas exibida no terminal" )
 print(last_response)
